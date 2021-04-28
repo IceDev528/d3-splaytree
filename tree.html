@@ -1,0 +1,158 @@
+<!-- Code from d3-graph-gallery.com -->
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<style>
+
+* {
+	margin: 0;
+    padding: 0;
+}
+
+.container {	
+    text-align: center;
+    display: flex;
+    flex-direction: column;    
+}
+
+#title {
+	background-color: #222;
+	color: white;
+}
+
+#toolbar {
+	padding: 8px;
+  	background-color: #666;
+}
+#toolbar input {
+	margin-right: 16px;
+}
+
+#control input {
+	margin-right: 16px;
+}
+
+.btn_green {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 4px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn_red {
+  background-color: #f44336; /* Red */
+  border: none;
+  color: white;
+  padding: 4px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn_blue {
+  background-color: dodgerblue; /* blue */
+  border: none;
+  color: white;
+  padding: 4px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;	
+}
+
+input[type=button]:disabled {
+	background-color: grey;
+}
+
+#control {	
+	padding: 8px;
+  	background-color: #666;
+}
+
+.circle {
+	fill: #7060E0;
+	stroke-width: 2;
+}
+.textcircle {
+	text-anchor: middle;
+	fill: white;
+	font-size: 14px;
+}
+
+.unlink {
+	visibility: hidden;
+}
+
+.selection {
+	fill: none;	
+	stroke-width: 2;
+}
+
+</style>
+<body>
+<div class="container">
+	<div id="title"> <h1>SPLAY TREE</h1></div>
+	<div id="toolbar"> 
+		<input id="inNumber" type="number" min="0" max="9999" maxlength="4" />
+		<input id="toolbar_insert" type="button" class="btn_green" value="Insert" onclick="onInsert()">
+		<input id="toolbar_delete" type="button" class="btn_red" value="Delete" onclick="onDelete()">
+		<input id="toolbar_find" type="button" class="btn_green" value="Find" onclick="onFind()">
+		<input id="toolbar_print" type="button" class="btn_green" value="Print" onclick="onPrint()">
+	</div>
+	<div id="control" style="order: 1"> 
+		<input id="control_skipback" type="button" class="btn_blue" value="Skip Back" onclick="onSkipBack()">
+		<input id="control_stepback" type="button" class="btn_blue" value="Step Back" onclick="onStepBack()">
+		<input id="control_play" type="button" class="btn_blue" value="Play"  onclick="onPlay()">
+		<input id="control_stepforward" type="button" class="btn_blue" value="Step Forward" onclick="onStepForward()">
+		<input id="control_skipforward" type="button" class="btn_blue" value="Skip Forward" onclick="onSkipForward()">
+
+		<span>Animation Speed: <span id="animation_speed_val" >800</span></span>
+  		<input type="range" id="animation_speed" min="100" max="2000" value="100" step="100" onchange="onChangeSpeed()">
+
+  		<input id="svg_width" type="number" min="100" max="2000" maxlength="4" value="800"/>
+  		<input id="svg_height" type="number" min="100" max="2000" maxlength="4"  value="400"/>
+		<input type="button" class="btn_blue" value="Change Canvas Size" onclick="onChangeCanvasSize()">
+		<input type="button" class="btn_blue" value="Move Control" onclick="onMoveControl()">
+	</div>
+	<div id="graph">
+		<svg id="d3-splaytree" width="800" height="400">
+			<defs>
+				<marker
+			      id="arrow"
+			      markerUnits="strokeWidth"
+			      markerWidth="5"
+			      markerHeight="5"
+			      viewBox="0 0 5 5"
+			      refX="3"
+			      refY="3"
+			      orient="auto">
+			      <path d="M1,1 L5,3 L1,5 L3,3 L1,1" style="fill: #383070;"></path>
+			    </marker>
+				<marker
+			      id="arrow_red"
+			      markerUnits="strokeWidth"
+			      markerWidth="5"
+			      markerHeight="5"
+			      viewBox="0 0 5 5"
+			      refX="3"
+			      refY="3"
+			      orient="auto">
+			      <path d="M1,1 L5,3 L1,5 L3,3 L1,1" style="fill: red;"></path>
+			    </marker>
+			</defs>
+		</svg>
+	</div>
+</div>
+</body>
+<!--<script src="https://d3js.org/d3.v4.js"></script>-->
+<script src="js/d3.v4.js"></script>
+<script src="js/splaytree.js"></script>
+</html>
